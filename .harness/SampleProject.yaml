@@ -35,9 +35,8 @@ pipeline:
                     image: python:3.9-slim
                     shell: Bash
                     command: |-
-                      pip install --upgrade pip
-                      pip install -r requirements.txt
                       pip install pytest
+                      pip install -r requirements.txt
               - step:
                   type: Run
                   name: Run Tests
