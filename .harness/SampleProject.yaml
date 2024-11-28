@@ -47,6 +47,15 @@ pipeline:
                     image: python:3.9-slim
                     shell: Bash
                     command: pytest tests/ --junitxml=results.xml
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: account.DockerhubConnector
+                    repo: sample-poc-project
+                    tags:
+                      - latest
     - stage:
         name: Deploy
         identifier: Deploy
