@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_gsajwan_sample_project_1732774667954-push-trigger-input-set
+  identifier: Build_gsajwan_sample_project_1732774667954pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: pov
+  pipeline:
+    identifier: Build_gsajwan_sample_project_1732774667954
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
