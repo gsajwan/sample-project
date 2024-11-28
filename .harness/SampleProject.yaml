@@ -34,7 +34,9 @@ pipeline:
                     connectorRef: account.DockerhubConnector
                     image: python:3.9-slim
                     shell: Bash
-                    command: pip install -r requirements.txt
+                    command: |-
+                      pip install -r requirements.txt
+                      pip install pytest
               - step:
                   type: Run
                   name: Run Tests
