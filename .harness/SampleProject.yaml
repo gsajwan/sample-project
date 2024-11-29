@@ -18,12 +18,6 @@ pipeline:
         type: CI
         spec:
           cloneCodebase: true
-          platform:
-            os: Linux
-            arch: Amd64
-          runtime:
-            type: Cloud
-            spec: {}
           execution:
             steps:
               - step:
@@ -55,6 +49,14 @@ pipeline:
                     repo: sample-poc-project
                     tags:
                       - latest
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: account.aks
+              namespace: digitalai
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
     - stage:
         name: Deploy
         identifier: Deploy
