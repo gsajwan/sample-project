@@ -30,6 +30,14 @@ pipeline:
                     shell: Bash
                     command: pip install -r requirements.txt
               - step:
+                  type: Run
+                  name: Test
+                  identifier: Test
+                  spec:
+                    shell: Bash
+                    command: learningbash="Hello World"
+                  description: sleep 10 sec
+              - step:
                   type: BuildAndPushDockerRegistry
                   name: BuildAndPushDockerRegistry_1
                   identifier: BuildAndPushDockerRegistry_1
