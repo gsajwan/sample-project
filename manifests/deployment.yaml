@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: python-app
-          image: gsajwan/sample-poc-project:latest
+          image: gsajwan/poc:latest
           ports:
             - containerPort: 80
