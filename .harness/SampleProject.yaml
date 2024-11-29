@@ -29,6 +29,15 @@ pipeline:
                     image: python:3.9-slim
                     shell: Bash
                     command: pip install -r requirements.txt
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: account.DockerhubConnector
+                    repo: gsajwan
+                    tags:
+                      - latest
           platform:
             os: Linux
             arch: Arm64
