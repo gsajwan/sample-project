@@ -21,42 +21,8 @@ pipeline:
     - stage:
         name: Deploy
         identifier: Deploy
-        description: ""
-        type: Deployment
-        spec:
-          deploymentType: Kubernetes
-          environment:
-            environmentRef: Prod
-            deployToAll: false
-            infrastructureDefinitions:
-              - identifier: k8senv
-          execution:
-            steps:
-              - step:
-                  name: Rollout Deployment
-                  identifier: rolloutDeployment
-                  type: K8sRollingDeploy
-                  timeout: 10m
-                  spec:
-                    skipDryRun: false
-                    pruningEnabled: false
-            rollbackSteps:
-              - step:
-                  name: Rollback Rollout Deployment
-                  identifier: rollbackRolloutDeployment
-                  type: K8sRollingRollback
-                  timeout: 10m
-                  spec:
-                    pruningEnabled: false
-          services:
-            values:
-              - serviceRef: service
-            metadata:
-              parallel: false
         tags: {}
-        failureStrategies:
-          - onFailure:
-              errors:
-                - AllErrors
-              action:
-                type: StageRollback
+        template:
+          templateRef: deploy
+          versionLabel: "1.0"
+          gitBranch: main
