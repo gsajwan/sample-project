@@ -1,0 +1,52 @@
+template:
+  name: "ci-cd Template "
+  type: Stage
+  projectIdentifier: pov
+  orgIdentifier: default
+  spec:
+    type: CI
+    spec:
+      cloneCodebase: true
+      execution:
+        steps:
+          - step:
+              type: Run
+              name: Install Dependencies
+              identifier: Install_Dependencies
+              spec:
+                connectorRef: account.DockerhubConnector
+                image: python:3.9-slim
+                shell: Bash
+                command: pip install -r requirements.txt
+          - step:
+              type: Run
+              name: Test
+              identifier: Test
+              spec:
+                shell: Bash
+                command: learningbash="Hello World"
+              description: sleep 10 sec
+          - step:
+              type: BuildAndPushDockerRegistry
+              name: BuildAndPushDockerRegistry_1
+              identifier: BuildAndPushDockerRegistry_1
+              spec:
+                connectorRef: account.DockerhubConnector
+                repo: gsajwan/poc
+                tags:
+                  - latest
+                  - "1.0"
+                caching: true
+      platform:
+        os: Linux
+        arch: Arm64
+      runtime:
+        type: Cloud
+        spec: {}
+      caching:
+        enabled: true
+        paths: []
+      buildIntelligence:
+        enabled: false
+  identifier: cicd_Template
+  versionLabel: "1.0"
