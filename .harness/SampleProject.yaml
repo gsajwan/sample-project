@@ -35,15 +35,22 @@ pipeline:
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
                     connectorRef: account.DockerhubConnector
-                    repo: gsajwan
+                    repo: gsajwan/poc
                     tags:
                       - latest
+                      - "1.0"
+                    caching: true
           platform:
             os: Linux
             arch: Arm64
           runtime:
             type: Cloud
             spec: {}
+          caching:
+            enabled: true
+            paths: []
+          buildIntelligence:
+            enabled: false
     - stage:
         name: Deploy
         identifier: Deploy
