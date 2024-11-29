@@ -34,7 +34,7 @@ pipeline:
                   name: BuildAndPushDockerRegistry_1
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
-                    connectorRef: account.DockerhubConnector
+                    connectorRef: account.harnessImage
                     repo: sample-poc-project
                     tags:
                       - latest
