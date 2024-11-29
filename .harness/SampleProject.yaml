@@ -28,35 +28,29 @@ pipeline:
                     connectorRef: account.DockerhubConnector
                     image: python:3.9-slim
                     shell: Bash
-                    command: |-
-                      pip install pytest
-                      pip install -r requirements.txt
-              - step:
-                  type: Run
-                  name: Run Tests
-                  identifier: Run_Tests
-                  spec:
-                    connectorRef: account.DockerhubConnector
-                    image: python:3.9-slim
-                    shell: Bash
-                    command: pytest tests/ --junitxml=results.xml
+                    command: pip install -r requirements.txt
               - step:
                   type: BuildAndPushDockerRegistry
                   name: BuildAndPushDockerRegistry_1
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
                     connectorRef: account.DockerhubConnector
-                    repo: sample-poc-project
+                    repo: gsajwan/poc
                     tags:
                       - latest
-          infrastructure:
-            type: KubernetesDirect
-            spec:
-              connectorRef: account.aks
-              namespace: digitalai
-              automountServiceAccountToken: true
-              nodeSelector: {}
-              os: Linux
+                      - "1.0"
+                    caching: true
+          platform:
+            os: Linux
+            arch: Arm64
+          runtime:
+            type: Cloud
+            spec: {}
+          caching:
+            enabled: true
+            paths: []
+          buildIntelligence:
+            enabled: false
     - stage:
         name: Deploy
         identifier: Deploy
