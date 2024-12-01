@@ -22,6 +22,24 @@ template:
               spec:
                 skipDryRun: false
                 pruningEnabled: false
+                delegateSelectors:
+                  - poc
+          - step:
+              type: ShellScriptProvision
+              name: ShellScriptProvision_1
+              identifier: ShellScriptProvision_1
+              spec:
+                source:
+                  type: Inline
+                  spec:
+                    script: |-
+                      #!/bin/bash
+
+                      echo "My first name is $1"
+                      echo "My surname is $2"
+                      echo "Total number of arguments is $#"
+                environmentVariables: []
+              timeout: 10m
         rollbackSteps:
           - step:
               name: Rollback Rollout Deployment
@@ -34,7 +52,7 @@ template:
         values:
           - serviceRef: service
         metadata:
-          parallel: false
+          parallel: true
     failureStrategies:
       - onFailure:
           errors:
