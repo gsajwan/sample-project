@@ -20,8 +20,8 @@ template:
               type: K8sRollingDeploy
               timeout: 10m
               spec:
-                skipDryRun: false
-                pruningEnabled: false
+                skipDryRun: true
+                pruningEnabled: true
                 delegateSelectors:
                   - poc
           - step:
@@ -54,7 +54,7 @@ template:
         values:
           - serviceRef: service
         metadata:
-          parallel: true
+          parallel: false
     failureStrategies:
       - onFailure:
           errors:
