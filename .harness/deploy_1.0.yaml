@@ -40,6 +40,8 @@ template:
                       echo "Total number of arguments is $#"
                 environmentVariables: []
               timeout: 10m
+              when:
+                stageStatus: Failure
         rollbackSteps:
           - step:
               name: Rollback Rollout Deployment
