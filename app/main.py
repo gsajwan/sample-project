@@ -1,5 +1,10 @@
-def say_hello(name):
-    return f"Hello, {name}!"
+from flask import Flask
 
-if __name__ == "__main__":
-    print(say_hello("Harness"))
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Hello, Harness Cloud!"
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)
